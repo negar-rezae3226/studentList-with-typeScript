@@ -1,0 +1,35 @@
+.table-users {
+    margin: 0px 100px;
+    background-color: aliceblue;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.button-create {
+    margin: 0px 100px;
+}
+
+.icone-panel {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.icone-panel-edite {
+    color: #ee964b;
+    font-size: 25px;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.icon-panel-delete {
+    color: #d00000;
+    font-size: 25px;
+    cursor: pointer;
+}
+.button-modal{
+    text-align: center;
+    padding-bottom: 30px;
+}
