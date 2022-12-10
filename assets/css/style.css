@@ -5,6 +5,9 @@
 
 body {
     background-color: lightgray;
+    direction: ltr;
+    text-align: left !important;
+    margin-top: 200px;
 }
 
 .button-create {
@@ -32,4 +35,19 @@ body {
 .button-modal{
     text-align: center;
     padding-bottom: 30px;
+}
+.select-width{
+    width: 210px;
+}
+.major-selected{
+    width: 210px;
+}
+.close-modal-cancel{
+    background-color: #d00000;
+}
+.table-responsive{
+    width: unset;
+}
+.form-control:focus {
+    box-shadow: unset;
 }

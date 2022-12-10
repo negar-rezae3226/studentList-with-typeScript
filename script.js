@@ -5,14 +5,18 @@ let newAgeStudent = document.getElementById("age-student");
 let newMobileStudent = document.getElementById("mobile-number");
 let newEnteringYearStudent = document.getElementById("enteringYear");
 let newGPAStudent = document.getElementById("gpa-number");
-let newIsMarriedStudent = document.getElementById("marrid");
+let newIsMarriedStudent = document.getElementById("married");
 let newGenderStudent = document.getElementById("gender");
+let newMajorStudent = document.getElementById("major");
 let newAddressStudent = document.getElementById("address-student");
+let newIdStudent = document.getElementById("id-student");
 let addNewUserInTable = document.getElementById("modal-body-table");
 let saveButtonInModal = document.getElementById("save-button");
 let createStudentButton = document.getElementById("add-button");
 let tableItems = document.getElementById("table-items");
 let modalButton = document.getElementById("modal-button");
+let modalTitle = document.getElementById("exampleModalToggleLabel");
+let buttonInModal = document.getElementById('button-edite');
 //#region class
 var gender;
 (function (gender) {
@@ -30,11 +34,11 @@ let students = [
         id: 1,
         firstName: "Negar",
         lastName: "Rezaei",
-        age: 50,
+        age: 22,
         mobileNumber: 637916758914,
         address: "1745 T Street Southeast",
-        isMarried: true,
-        gender: gender[0],
+        isMarried: 'No',
+        gender: gender[1],
         enteringYear: 1397,
         GPA: 19.5,
         Major: "computer",
@@ -46,7 +50,7 @@ let students = [
         age: 25,
         mobileNumber: 637916758914,
         address: "1745 T Street Southeast",
-        isMarried: true,
+        isMarried: "No",
         gender: gender[0],
         enteringYear: 1397,
         GPA: 19.5,
@@ -59,8 +63,8 @@ let students = [
         age: 50,
         mobileNumber: 637916758914,
         address: "1745 T Street Southeast",
-        isMarried: true,
-        gender: gender[0],
+        isMarried: "Yes",
+        gender: gender[2],
         enteringYear: 1397,
         GPA: 19.5,
         Major: "computer",
@@ -75,9 +79,9 @@ class StudentService {
         return students;
     }
     getStudentByID(studentId) {
-        const sutdent = students.find((student) => student.id == studentId);
-        if (sutdent)
-            return sutdent;
+        const student = students.find((student) => student.id == studentId);
+        if (student)
+            return student;
         else
             return null;
     }
@@ -124,15 +128,15 @@ function createTable() {
 <td>${student.lastName}</td>
 <td>${student.age}</td>
 <td>${student.mobileNumber}</td>
+<td>${student.Major}</td>
 <td>${student.address}</td>
 <td>${student.isMarried}</td>
 <td>${student.gender}</td>
 <td>${student.enteringYear}</td>
 <td>${student.GPA}</td>
-<td>${student.Major}</td>
 <td>
    <div class="icone-panel">    
-    <i class="mdi tooltip1  pr-2 icone-panel-edite mdi-square-edit-outline"  data-toggle="modal"   data-target="#edite-table-items" onclick="editStudent('${student.id}')"></i>
+    <i class="mdi tooltip1  pr-2 icone-panel-edite mdi-square-edit-outline"  data-toggle="modal"   data-target="#edite-table-items" onclick="defaultValueInInput('${student.id}')"></i>
     <i class="mdi mdi-delete icon-panel-delete" data-toggle="modal" data-target="#myModal" onclick = "deleteStudent('${student.id}')"></i>
    </div>
 </td>
@@ -143,16 +147,72 @@ function createTable() {
 }
 //#region addNewStudent
 function addnewStudent() {
+    let idNumber = newIdStudent.value;
+    let lastNameStudent = newLastNameStudent.value;
+    let firstNameStudent = newFirstNameStudent.value;
+    let ageStudent = newAgeStudent.value;
+    let mobileNumberStudent = newMobileStudent.value;
+    let addressStudent = newAddressStudent.value;
+    let isMarriedStudent = newIsMarriedStudent.value;
+    let genderStudent = newGenderStudent.value;
+    let enteringYearStudent = newEnteringYearStudent.value;
+    let GPAStudent = newGPAStudent.value;
+    let majorStudent = newMajorStudent.value;
+    if (!idNumber || !lastNameStudent || !firstNameStudent || !ageStudent || !mobileNumberStudent || !addressStudent || !isMarriedStudent || !genderStudent || !enteringYearStudent || !majorStudent || !GPAStudent) {
+        let buttonsClick1 = '';
+        buttonsClick1 = `
+       <button type="button" class="btn btn-success" aria-label="Close">save</button>
+       <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">cancel</button>
+  `;
+        buttonInModal.innerHTML = buttonsClick1;
+        if (!firstNameStudent) {
+            newFirstNameStudent.style.borderColor = "red";
+        }
+        if (!idNumber) {
+            newIdStudent.style.borderColor = "red";
+        }
+        if (!lastNameStudent) {
+            newLastNameStudent.style.borderColor = "red";
+        }
+        if (!ageStudent) {
+            newAgeStudent.style.borderColor = "red";
+        }
+        if (!mobileNumberStudent) {
+            newMobileStudent.style.borderColor = "red";
+        }
+        if (!addressStudent) {
+            newAddressStudent.style.borderColor = "red";
+        }
+        if (!GPAStudent) {
+            newGPAStudent.style.borderColor = "red";
+        }
+        if (!enteringYearStudent) {
+            newEnteringYearStudent.style.borderColor = "red";
+        }
+        if (!isMarriedStudent) {
+            newIsMarriedStudent.style.borderColor = "red";
+        }
+        if (!genderStudent) {
+            newGenderStudent.style.borderColor = "red";
+        }
+        if (!majorStudent) {
+            newMajorStudent.style.borderColor = "red";
+        }
+        return;
+    }
+    let idChangeToNumber = +idNumber;
     let Information = {
-        firstName: newLastNameStudent.value,
-        lastName: newFirstNameStudent.value,
-        age: newAgeStudent.value,
-        mobileNumber: newMobileStudent.value,
-        address: newAddressStudent.value,
-        isMarried: newIsMarriedStudent.value,
-        gender: newGenderStudent.value,
-        enteringYear: newEnteringYearStudent.value,
-        GPA: newGPAStudent.value,
+        id: idChangeToNumber,
+        firstName: lastNameStudent,
+        lastName: firstNameStudent,
+        age: ageStudent,
+        mobileNumber: mobileNumberStudent,
+        address: addressStudent,
+        isMarried: isMarriedStudent,
+        gender: genderStudent,
+        enteringYear: enteringYearStudent,
+        GPA: GPAStudent,
+        Major: majorStudent,
     };
     studentService.createStudent(Information);
     createTable();
@@ -167,22 +227,39 @@ function deleteStudent(studentId) {
 //#endregion
 //#region edit
 function defaultValueInInput(studentId) {
+    let majorSelect = document.getElementById('major-select');
+    let genderSelect = document.getElementById('gender-select');
+    let marriedSelect = document.getElementById('married-select');
+    let buttonsClick = '';
+    buttonsClick = `
+     <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close" onclick="editStudent(${studentId})">save</button>
+     <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">cancel</button>
+`;
+    buttonInModal.innerHTML = buttonsClick;
     let findStudent = students.find((student) => student.id == studentId);
+    // (majorSelect as HTMLInputElement).innerHTML = findStudent.Major;
+    // (genderSelect as HTMLInputElement).innerHTML = findStudent.gender;
+    // (marriedSelect as HTMLInputElement).innerHTML = findStudent.isMarried;
+    let optionSelectMarried = findStudent.isMarried;
+    document.getElementById(optionSelectMarried).setAttribute('selected', 'selected');
+    let optionSelectGender = findStudent.gender;
+    document.getElementById(optionSelectGender).setAttribute('selected', 'selected');
+    let optionSelectMajor = findStudent.Major;
+    document.getElementById(optionSelectMajor).setAttribute('selected', 'selected');
     newLastNameStudent.value = findStudent.lastName;
     newFirstNameStudent.value = findStudent.firstName;
     newAgeStudent.value = findStudent.age;
     newMobileStudent.value = findStudent.mobileNumber;
     newEnteringYearStudent.value = findStudent.enteringYear;
     newGPAStudent.value = findStudent.GPA;
-    newIsMarriedStudent.value = findStudent.isMarried;
-    newGenderStudent.value = findStudent.gender;
     newAddressStudent.value = findStudent.address;
+    newIdStudent.value = findStudent.id;
 }
 function editStudent(studentId) {
-    defaultValueInInput(studentId);
     let editInformationStudents = {
-        firstName: newLastNameStudent.value,
-        lastName: newFirstNameStudent.value,
+        id: newIdStudent.value,
+        firstName: newFirstNameStudent.value,
+        lastName: newLastNameStudent.value,
         age: newAgeStudent.value,
         mobileNumber: newMobileStudent.value,
         address: newAddressStudent.value,
@@ -190,7 +267,9 @@ function editStudent(studentId) {
         gender: newGenderStudent.value,
         enteringYear: newEnteringYearStudent.value,
         GPA: newGPAStudent.value,
+        Major: newMajorStudent.value,
     };
+    let studentService = new StudentService(students);
     studentService.updateStudent(studentId, editInformationStudents);
     createTable();
 }

@@ -19,9 +19,9 @@
 </head>
 
 <body>
-    <button type="button" class="btn btn-success button-create" id="add-button" data-toggle="modal"
+    <button type="button" class="btn btn-success button-create mb-2" id="add-button" data-toggle="modal"
         data-target="#edite-table-items">add</button>
-    <div class="table-users">
+    <div class="table-users  table-responsive ">
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -29,15 +29,13 @@
                     <th scope="col">LastName</th>
                     <th scope="col">Age</th>
                     <th scope="col">MobileNumber</th>
+                    <th scope="col">Major</th>
                     <th scope="col">Address</th>
                     <th scope="col">isMarried</th>
                     <th scope="col">gender</th>
                     <th scope="col">enteringYear</th>
                     <th scope="col">GPA</th>
-                    <th scope="col">Major</th>
                     <th scope="col"></th>
-
-
                 </tr>
             </thead>
             <tbody id="table-items">
@@ -53,65 +51,93 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h5 class="modal-title  edite-title" id="exampleModalToggleLabel">edit</h5>
+                    <h5 class="modal-title-" id="exampleModalToggleLabel"></h5>
 
                 </div>
                 <div class="modal-body class-modal-body" id="modal-body-table">
                     <div class="form-floating  d-flex mb-2  mr-3 ml-3">
                         <div>
                             <label for="title">firstName:</label>
-                            <input type="text" class="form-control  m ml-2 " id="first-name" >
+                            <input type="text" class="form-control  m " id="first-name">
                         </div>
-                        <div class="mr-2">
+                        <div class="ml-3">
                             <label for="brand">lastName:</label>
-                            <input type="text" class="form-control  m" id="last-name"  >
-                         </div>
+                            <input type="text" class="form-control  m" id="last-name">
+                        </div>
                     </div>
-                  
-                     <div class=" form-floating mb-2 d-flex mr-3 ml-3">
-                            <div>
-                                <label for="price">age:</label>
-                                <input type="number" class="form-control  m ml-2" id="age-student" >
-                            </div>
-                            <div class="mr-2">
-                                <label for="sale">mobileNumber :</label>
-                                <input type="number" class="form-control  m" id="mobile-number">
-                            </div>
-                     </div>
 
-                     <div class=" form-floating mb-2 d-flex mr-3 ml-3">
+                    <div class=" form-floating mb-2 d-flex mr-3 ml-3">
+                        <div>
+                            <label for="price">age:</label>
+                            <input type="number" class="form-control  m " id="age-student">
+                        </div>
+                        <div class="ml-3">
+                            <label for="sale">mobileNumber :</label>
+                            <input type="number" class="form-control  m" id="mobile-number">
+                        </div>
+                    </div>
+
+                    <div class=" form-floating mb-2 d-flex mr-3 ml-3">
                         <div>
                             <label for="price">enteringYear:</label>
-                            <input type="number" class="form-control  m ml-2" id="enteringYear">
+                            <input type="number" class="form-control  m " id="enteringYear">
                         </div>
-                        <div class="mr-2">
+                        <div class="ml-3">
                             <label for="sale">GPA:</label>
                             <input type="number" class="form-control  m" id="gpa-number">
                         </div>
-                     </div>
+                    </div>
 
-                     <div class="form-floating  d-flex mb-2  mr-3 ml-3">
-                        <div>
-                            <label for="title">isMarrid:</label>
-                            <input type="text" class="form-control  m ml-2 " id="marrid">
+                    <div class="form-floating  d-flex mb-2  mr-3 ml-3">
+                        <div class="select-width">
+                            <label for="title">isMarried:</label>
+                            <select type="text" class="form-control  m" id="married">
+                                <option id="married-select"></option>
+                                <option id="Yes">Yes</option>
+                                <option id="No">No</option>
+                            </select>
                         </div>
-                        <div class="mr-2">
-                            <label for="brand">gander:</label>
-                            <input type="text" class="form-control  m" id="gender">
-                         </div>
+                        <div class="ml-3 select-width">
+                            <label>gander:</label>
+                            <select type="text" class="form-control  m" id="gender">
+                                <option id="gender-select"></option>
+                                <option id="Male">Male</option>
+                                <option id="Female">Female</option>
+                                <option  id="Unknown">Unknown</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" form-floating mb-2 d-flex mr-3 ml-3">
+                        <div>
+                            <label for="price">id:</label>
+                            <input type="number" class="form-control  m " id="id-student">
+                        </div>
+                        <div class=" ml-3 mb-2 major-selected">
+                            <label>Major:</label>
+                            <select type="text" class="form-control  m"  id="major">
+                                <option id="major-select"></option>
+                                <option id="computer engineering">computer engineering</option>
+                                <option id="Petroleum engineering">Petroleum engineering</option>
+                                <option id="electrical engineering">electrical engineering</option>
+                                <option id="Accounting">Accounting</option>
+                            </select>
+                        </div>
+
                     </div>
                     <div class=" mr-3 ml-3">
                         <label for="title">address:</label>
-                        <input type="text" class="form-control  m ml-2 " id="address-student">
+                        <input type="text" class="form-control  m  " id="address-student">
                     </div>
                 </div>
-                <div class="button-modal mt-3">
-                    <button type="button" class="btn btn-success" onclick="addnewStudent()">save</button>
-                    <button type="button" class="btn btn-danger">cancle</button>
+                <div class="button-modal mt-3" id="button-edite">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close" onclick="addnewStudent()">save</button>
+                    
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">cancel</button>
                 </div>
             </div>
         </div>
     </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
