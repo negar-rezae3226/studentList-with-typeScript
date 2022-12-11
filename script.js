@@ -20,9 +20,9 @@ let buttonInModal = document.getElementById('button-edite');
 //#region class
 var gender;
 (function (gender) {
-    gender[gender["male"] = 0] = "male";
-    gender[gender["female"] = 1] = "female";
-    gender[gender["unknown"] = 2] = "unknown";
+    gender[gender["Male"] = 0] = "Male";
+    gender[gender["Female"] = 1] = "Female";
+    gender[gender["Unknown"] = 2] = "Unknown";
 })(gender || (gender = {}));
 class User {
 }
@@ -37,11 +37,11 @@ let students = [
         age: 22,
         mobileNumber: 637916758914,
         address: "1745 T Street Southeast",
-        isMarried: 'No',
+        isMarried: "No",
         gender: gender[1],
         enteringYear: 1397,
         GPA: 19.5,
-        Major: "computer",
+        Major: "computer engineering",
     },
     {
         id: 2,
@@ -54,7 +54,7 @@ let students = [
         gender: gender[0],
         enteringYear: 1397,
         GPA: 19.5,
-        Major: "computer",
+        Major: "computer engineering",
     },
     {
         id: 3,
@@ -67,7 +67,7 @@ let students = [
         gender: gender[2],
         enteringYear: 1397,
         GPA: 19.5,
-        Major: "computer",
+        Major: "Accounting",
     },
 ];
 createTable();
@@ -147,7 +147,7 @@ function createTable() {
 }
 //#region addNewStudent
 function addnewStudent() {
-    let idNumber = newIdStudent.value;
+    // let idNumber = (newIdStudent as HTMLInputElement).value;
     let lastNameStudent = newLastNameStudent.value;
     let firstNameStudent = newFirstNameStudent.value;
     let ageStudent = newAgeStudent.value;
@@ -158,7 +158,7 @@ function addnewStudent() {
     let enteringYearStudent = newEnteringYearStudent.value;
     let GPAStudent = newGPAStudent.value;
     let majorStudent = newMajorStudent.value;
-    if (!idNumber || !lastNameStudent || !firstNameStudent || !ageStudent || !mobileNumberStudent || !addressStudent || !isMarriedStudent || !genderStudent || !enteringYearStudent || !majorStudent || !GPAStudent) {
+    if (!lastNameStudent || !firstNameStudent || !ageStudent || !mobileNumberStudent || !addressStudent || !isMarriedStudent || !genderStudent || !enteringYearStudent || !majorStudent || !GPAStudent) {
         let buttonsClick1 = '';
         buttonsClick1 = `
        <button type="button" class="btn btn-success" aria-label="Close">save</button>
@@ -168,9 +168,9 @@ function addnewStudent() {
         if (!firstNameStudent) {
             newFirstNameStudent.style.borderColor = "red";
         }
-        if (!idNumber) {
-            newIdStudent.style.borderColor = "red";
-        }
+        // if (!idNumber) {
+        //   (newIdStudent as HTMLInputElement).style.borderColor = "red";
+        // }
         if (!lastNameStudent) {
             newLastNameStudent.style.borderColor = "red";
         }
@@ -200,9 +200,9 @@ function addnewStudent() {
         }
         return;
     }
-    let idChangeToNumber = +idNumber;
+    // let idChangeToNumber = +idNumber;
     let Information = {
-        id: idChangeToNumber,
+        id: ageStudent,
         firstName: lastNameStudent,
         lastName: firstNameStudent,
         age: ageStudent,
@@ -227,24 +227,18 @@ function deleteStudent(studentId) {
 //#endregion
 //#region edit
 function defaultValueInInput(studentId) {
-    let majorSelect = document.getElementById('major-select');
-    let genderSelect = document.getElementById('gender-select');
-    let marriedSelect = document.getElementById('married-select');
-    let buttonsClick = '';
+    let buttonsClick = "";
     buttonsClick = `
      <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close" onclick="editStudent(${studentId})">save</button>
      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">cancel</button>
 `;
     buttonInModal.innerHTML = buttonsClick;
     let findStudent = students.find((student) => student.id == studentId);
-    // (majorSelect as HTMLInputElement).innerHTML = findStudent.Major;
-    // (genderSelect as HTMLInputElement).innerHTML = findStudent.gender;
-    // (marriedSelect as HTMLInputElement).innerHTML = findStudent.isMarried;
     let optionSelectMarried = findStudent.isMarried;
-    document.getElementById(optionSelectMarried).setAttribute('selected', 'selected');
     let optionSelectGender = findStudent.gender;
-    document.getElementById(optionSelectGender).setAttribute('selected', 'selected');
     let optionSelectMajor = findStudent.Major;
+    document.getElementById(optionSelectMarried).setAttribute("selected", "selected");
+    document.getElementById(optionSelectGender).setAttribute('selected', 'selected');
     document.getElementById(optionSelectMajor).setAttribute('selected', 'selected');
     newLastNameStudent.value = findStudent.lastName;
     newFirstNameStudent.value = findStudent.firstName;
@@ -253,11 +247,11 @@ function defaultValueInInput(studentId) {
     newEnteringYearStudent.value = findStudent.enteringYear;
     newGPAStudent.value = findStudent.GPA;
     newAddressStudent.value = findStudent.address;
-    newIdStudent.value = findStudent.id;
+    // (newIdStudent as HTMLInputElement).value = findStudent.id;
 }
 function editStudent(studentId) {
     let editInformationStudents = {
-        id: newIdStudent.value,
+        id: newAgeStudent.value,
         firstName: newFirstNameStudent.value,
         lastName: newLastNameStudent.value,
         age: newAgeStudent.value,
